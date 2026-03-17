@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Destiny Artwork</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      z-index: 2;
+      letter-spacing: 2px;
+    }
+
+    input {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      max-width: none;
+      min-width: 100%;
+      min-height: 100%;
+      animation: slowZoom 20s infinite alternate ease-in-out;
+      filter: brightness(0.9) contrast(1.1);
+    }
+
+    /* Slow cinematic zoom */
+    @keyframes slowZoom {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+
+    /* Subtle glowing effect */
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,150,255,0.15), transparent 70%);
+      animation: pulse 6s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.5;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-10vh);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>DESTINY VISUALIZER</h1>
+<input type="file" id="upload" accept="image/*">
+
+<div class="container">
+  <img id="bg" src="">
+  <div class="glow"></div>
+</div>
+
+<script>
+  const upload = document.getElementById("upload");
+  const bg = document.getElementById("bg");
+
+  upload.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      bg.src = URL.createObjectURL(file);
+    }
+  });
+
+  // Generate floating particles
+  for (let i = 0; i < 60; i++) {
+    let p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.animationDuration = (5 + Math.random() * 10) + "s";
+    p.style.opacity = Math.random();
+    document.body.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
