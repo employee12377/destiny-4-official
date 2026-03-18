@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Destiny 4 Reveal</title>
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+#bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  animation: slowZoom 25s infinite alternate ease-in-out;
+  filter: brightness(0.8) contrast(1.2);
+}
+
+@keyframes slowZoom {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Glow overlay */
+.glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,150,255,0.15), transparent 70%);
+  animation: pulse 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Glow pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.4;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+<body>
+
+<img id="bg" src="Destiny 4 - Official Poster Reveal.png">
+<div class="glow"></div>
+
+<script>
+// Generate floating particles
+for (let i = 0; i < 80; i++) {
+  let p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (5 + Math.random() * 10) + "s";
+  p.style.opacity = Math.random();
+  document.body.appendChild(p);
+}
+</script>
+
+</body>
+</html>
